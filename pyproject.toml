@@ -1,0 +1,48 @@
+[project]
+name = "fpga-embedded-template"
+version = "0.1.0"
+description = "Minimal mixed HDL, Python and embedded-software development project"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+]
+
+[dependency-groups]
+test = [
+    "pytest>=8",
+]
+fpga = [
+    "cocotb>=2.0",
+    "vunit-hdl>=4.7",
+    "hdl-registers>=8.2,<9",
+]
+docs = [
+    "sphinx>=8",
+    "sphinx-rtd-theme>=3",
+    "myst-parser>=4",
+]
+dev = [
+    { include-group = "test" },
+    { include-group = "fpga" },
+    { include-group = "docs" },
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "verification/python"]
+pythonpath = ["src"]
+addopts = ["-ra", "--strict-markers"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "verification/python"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.uv]
+default-groups = ["dev"]

@@ -1,0 +1,27 @@
+# hdl-registers TOML format.
+# Register addresses and field offsets are derived by hdl-registers.
+[control]
+mode = "r_w"
+description = "Main control register."
+enable.type = "bit"
+enable.description = "Enable the processing block."
+enable.default_value = "0"
+
+[status]
+mode = "r"
+description = "Block status."
+ready.type = "bit"
+ready.description = "The block is ready to accept data."
+
+[configuration]
+mode = "r_w"
+description = "Example configuration."
+gain.type = "bit_vector"
+gain.width = 8
+gain.description = "Unsigned gain setting."
+gain.default_value = "1"
+
+[build_id]
+type = "constant"
+value = 1
+description = "Register-map schema example build identifier."
